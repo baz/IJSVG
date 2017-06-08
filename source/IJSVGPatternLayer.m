@@ -28,6 +28,7 @@
     return self;
 }
 
+void IJSVGPatternDrawingCallBack(void * info, CGContextRef ctx);
 void IJSVGPatternDrawingCallBack(void * info, CGContextRef ctx) {
     // reassign the layer
     IJSVGPatternLayer * layer = (IJSVGPatternLayer *)info;

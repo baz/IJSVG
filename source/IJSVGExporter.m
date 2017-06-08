@@ -31,6 +31,7 @@
 @synthesize title;
 @synthesize description;
 
+const NSArray * IJSVGInheritableAttributes(void);
 const NSArray * IJSVGInheritableAttributes()
 {
     static NSArray * _attributes;
@@ -85,10 +86,12 @@ const NSArray * IJSVGInheritableAttributes()
     return _attributes;
 }
 
+void IJSVGApplyAttributesToElement(NSDictionary *attributes, NSXMLElement *element);
 void IJSVGApplyAttributesToElement(NSDictionary *attributes, NSXMLElement *element) {
     [element setAttributesAsDictionary:attributes];
 };
 
+NSDictionary * IJSVGElementAttributeDictionary(NSXMLElement * element);
 NSDictionary * IJSVGElementAttributeDictionary(NSXMLElement * element) {
     NSMutableDictionary * dict = [[[NSMutableDictionary alloc] init] autorelease];
     for(NSXMLNode * attribute in element.attributes) {
@@ -97,15 +100,18 @@ NSDictionary * IJSVGElementAttributeDictionary(NSXMLElement * element) {
     return dict;
 };
 
+NSString * IJSVGShortFloatString(CGFloat f);
 NSString * IJSVGShortFloatString(CGFloat f)
 {
     return [NSString stringWithFormat:@"%g",f];
 };
 
+NSString * IJSVGHashURL(NSString * key);
 NSString * IJSVGHashURL(NSString * key) {
     return [NSString stringWithFormat:@"url(#%@)",key];
 };
 
+NSString * IJSVGHash(NSString * key);
 NSString * IJSVGHash(NSString * key) {
     return [@"#" stringByAppendingString:key];
 }

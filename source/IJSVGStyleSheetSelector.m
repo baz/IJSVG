@@ -18,12 +18,14 @@
 
 @synthesize specificity;
 
+BOOL IJSVGStyleSheetIsSiblingCombinator(IJSVGStyleSheetSelectorCombinator combinator);
 BOOL IJSVGStyleSheetIsSiblingCombinator(IJSVGStyleSheetSelectorCombinator combinator)
 {
     return combinator == IJSVGStyleSheetSelectorCombinatorNextSibling ||
     combinator == IJSVGStyleSheetSelectorCombinatorPrecededSibling;
 };
 
+IJSVGStyleSheetSelectorCombinator IJSVGStyleSheetCombinatorForUnichar(unichar aChar);
 IJSVGStyleSheetSelectorCombinator IJSVGStyleSheetCombinatorForUnichar(unichar aChar)
 {
     if(aChar == '+') {
@@ -38,6 +40,7 @@ IJSVGStyleSheetSelectorCombinator IJSVGStyleSheetCombinatorForUnichar(unichar aC
     return IJSVGStyleSheetSelectorCombinatorDescendant;
 };
 
+IJSVGNode * IJSVGStyleSheetPreviousNode(IJSVGNode * node);
 IJSVGNode * IJSVGStyleSheetPreviousNode(IJSVGNode * node)
 {
     IJSVGGroup * group = (IJSVGGroup *)node.parentNode;
@@ -50,6 +53,7 @@ IJSVGNode * IJSVGStyleSheetPreviousNode(IJSVGNode * node)
     return group.children[currentIndex-1];
 };
 
+IJSVGNode * IJSVGStyleSheetNextNode(IJSVGNode * node);
 IJSVGNode * IJSVGStyleSheetNextNode(IJSVGNode * node)
 {
     IJSVGGroup * group = (IJSVGGroup *)node.parentNode;
@@ -63,6 +67,7 @@ IJSVGNode * IJSVGStyleSheetNextNode(IJSVGNode * node)
     return group.children[currentIndex+1];
 };
 
+IJSVGStyleSheetSelectorRaw * IJSVGStyleSheetPreviousSelector(IJSVGStyleSheetSelectorRaw * aSelector, NSArray * _rawSelectors);
 IJSVGStyleSheetSelectorRaw * IJSVGStyleSheetPreviousSelector(IJSVGStyleSheetSelectorRaw * aSelector, NSArray * _rawSelectors)
 {
     NSInteger index = [_rawSelectors indexOfObject:aSelector];
@@ -72,6 +77,7 @@ IJSVGStyleSheetSelectorRaw * IJSVGStyleSheetPreviousSelector(IJSVGStyleSheetSele
     return _rawSelectors[index-1];
 };
 
+															 IJSVGStyleSheetSelectorRaw * IJSVGStyleSheetNextSelector(IJSVGStyleSheetSelectorRaw * aSelector, NSArray * _rawSelectors);
 IJSVGStyleSheetSelectorRaw * IJSVGStyleSheetNextSelector(IJSVGStyleSheetSelectorRaw * aSelector, NSArray * _rawSelectors)
 {
     NSInteger index = [_rawSelectors indexOfObject:aSelector];
@@ -81,6 +87,7 @@ IJSVGStyleSheetSelectorRaw * IJSVGStyleSheetNextSelector(IJSVGStyleSheetSelector
     return _rawSelectors[index+1];
 };
 
+BOOL IJSVGStyleSheetMatchSelector(IJSVGNode * node, IJSVGStyleSheetSelectorRaw * rawSelector);
 BOOL IJSVGStyleSheetMatchSelector(IJSVGNode * node, IJSVGStyleSheetSelectorRaw * rawSelector)
 {
     // return no if the tag is set but doesnt match the node

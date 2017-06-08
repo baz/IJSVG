@@ -8,12 +8,14 @@
 
 #import "IJSVGTransaction.h"
 
+void IJSVGBeginTransactionLock(void);
 void IJSVGBeginTransactionLock() {
     [CATransaction begin];
     [CATransaction lock];
     [CATransaction setDisableActions:YES];
 };
 
+void IJSVGEndTransactionLock(void);
 void IJSVGEndTransactionLock() {
     [CATransaction unlock];
     [CATransaction commit];
